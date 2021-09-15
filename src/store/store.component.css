@@ -1,0 +1,11 @@
+.content {
+  padding: 16px;
+}
+
+.content > mat-card {
+  width: 100px;
+}
+
+.row-height {
+  height: 100%;
+}

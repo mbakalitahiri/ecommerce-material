@@ -1,10 +1,33 @@
+import { ProductsListComponent } from '../store/products-list/products-list.component';
 import { NgModule } from '@angular/core';
-import { RouterModule, Routes } from '@angular/router';
+import { CheckoutComponent } from '../store/checkout/checkout.component';
+import { Routes, RouterModule } from '@angular/router';
 
-const routes: Routes = [];
+const rutas: Routes = [
+  {
+    path: 'store',
+    loadChildren: () =>
+      import('../store/store.module').then((m) => m.StoreModule),
+  },
 
+  {
+    path: 'checkout',
+    component: CheckoutComponent,
+  },
+  { path: 'products', component: ProductsListComponent },
+  {
+    path: 'admin',
+    loadChildren: () =>
+      import('../admin/admin.module').then((m) => m.AdminModule),
+  },
+  {
+    path: '',
+    loadChildren: () =>
+      import('../store/store.module').then((m) => m.StoreModule),
+  },
+];
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule]
+  imports: [RouterModule.forRoot(rutas)],
+  exports: [RouterModule],
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {}

@@ -1,0 +1,11 @@
+.table.mat-table {
+  display: table;
+  background-color: red;
+}
+
+.mat-table {
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+  width: 100%;
+}
+
+

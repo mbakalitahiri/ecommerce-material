@@ -1,0 +1,85 @@
+<!-- <div [routerLink]="['/store/product/detaills/', product?.productCode]">
+   <img src="../../assets/img/{{ product.productCode }}.jpg" alt="..." />
+   <div class="card-body p-4">
+    <div class="text-center">
+      <h5 class="fw-bolder txt-center">{{ product.productName }}</h5>
+       {{ product?.MSRP | currency: "GBP" }}
+    </div>
+  </div>
+   <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
+    <div class="text-center">
+      <a
+        class="btn btn-outline-dark mt-auto"
+        routerLinkActive="router-link-active"
+        >View options</a
+      >
+    </div>
+  </div>
+  <button
+    class="btn btn-outline-primary btn-sm mt-2"
+    type="button"
+    (click)="addProductToCart(product)"
+  >
+    Add to wishlist
+  </button>
+</div> -->
+
+<!--  [routerLink]="['/store/product/detaills/', product?.productCode]" -->
+
+<!-- <div fxLayout="row" fxLayoutGap="12px" [style.margin-top]="'12px'">
+  <mat-card class="example-card">
+    <mat-card-header>
+      <div mat-card-avatar class="example-header-image"></div>
+      <mat-card-title>{{ product?.productName }}</mat-card-title>
+      <mat-card-subtitle>{{ product?.category }}</mat-card-subtitle>
+    </mat-card-header>
+    <img
+      mat-card-image
+      src="../../assets/img/{{ product.productCode }}.jpg"
+      alt="Photo of a Shiba Inu"
+    />
+    <mat-card-content>
+      <p>
+        {{ product?.productDescription }}
+      </p>
+    </mat-card-content>
+    <mat-card-actions>
+      <button mat-button>LIKE</button>
+      <button mat-button>SHARE</button>
+    </mat-card-actions>
+  </mat-card>
+</div> -->
+
+<!-- <div>
+  <mat-card class="mat-elevation-z4">
+    <mat-card-header class="center">
+      <mat-card-title>{{ product.productName }} </mat-card-title>
+    </mat-card-header>
+    <img mat-card-image src="../../assets/img/{{ product.productCode }}.jpg" />
+    <mat-card-content> </mat-card-content>
+    <mat-card-actions class="card-action">
+      <button
+        mat-button
+        [routerLink]="['/store/product/detaills/', product?.productCode]"
+        color="info"
+      >
+        More
+      </button>
+      <button mat-button (click)="addProductToCart(product)" color="buy">
+        Buy
+      </button>
+    </mat-card-actions>
+  </mat-card>
+</div> -->
+
+<mat-card class="mat-elevation-z4">
+  <mat-card-header>
+    <mat-card-title> {{ product.productName }}</mat-card-title>
+  </mat-card-header>
+  <img mat-card-image src="../../../assets/img/{{ product.productCode }}.jpg" />
+  <mat-card-content> </mat-card-content>
+  <mat-card-actions>
+    <button mat-button>LIKE</button>
+    <button mat-button>SHARE</button>
+  </mat-card-actions>
+</mat-card>

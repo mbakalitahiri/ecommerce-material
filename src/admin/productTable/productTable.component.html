@@ -1,0 +1,159 @@
+<div class="row" style="justify-content: center">
+  <h1>Product List</h1>
+</div>
+
+<mat-form-field class="input-row" appearance="outline">
+  <mat-label>Select category</mat-label>
+  <mat-select (selectionChange)="changeCategory($event.value)">
+    <mat-option *ngFor="let cat of categories" value="{{ cat }}">{{
+      cat
+    }}</mat-option>
+  </mat-select>
+</mat-form-field>
+
+<div class="col-3 mb-3">
+  <select
+    class="form-control"
+    [value]="productsPerPage"
+    (change)="changePageSize($event)"
+  >
+    <option value="10">5 items per Page</option>
+    <option value="10">10 items per Page</option>
+
+    <option value="20">20 items per Page</option>
+    <option value="30">30 items per Page</option>
+
+    <option value="40">40 items per Page</option>
+
+    <div class="btn-group mt-2">
+      <button
+        *counter="let page of pageCount"
+        (click)="changePage(page)"
+        class="btn btn-outline-primary btn-sm"
+        [class.active]="page == selectedPage"
+      >
+        {{ page }}
+      </button>
+    </div>
+  </select>
+</div>
+
+<!--<table class="table table-striped">-->
+<!--  <thead>-->
+<!--    <tr>-->
+<!--      <th scope="col">Id</th>-->
+<!--      <th scope="col">Name</th>-->
+<!--      <th scope="col">Category</th>-->
+<!--      <th scope="col">Price</th>-->
+<!--      <th scope="col" class="">Action</th>-->
+<!--    </tr>-->
+<!--  </thead>-->
+<!--  <tbody>-->
+<!--    <tr *ngFor="let p of getProducts()">-->
+<!--      <td>{{ p.productCode }}</td>-->
+<!--      <td>{{ p.productName }}</td>-->
+<!--      <td>{{ p.category }}</td>-->
+<!--      <td>{{ p.MSRP | currency: "GBP":"symbol":"2.2-2" }}</td>-->
+<!--      <td>-->
+<!--         <button-->
+<!--          class="btn btn-sm btn-warning m-1"-->
+<!--          [routerLink]="['/admin/main/products/edit', p.id]"-->
+<!--        >-->
+<!--          Edit-->
+<!--        </button>-->
+<!--        <button class="btn btn-sm btn-danger" (click)="deleteProduct(p.id)">-->
+<!--          Delete-->
+<!--        </button>-->
+<!--      </td>-->
+<!--    </tr>-->
+<!--  </tbody>-->
+<!--</table>-->
+
+<div class="col-9 mt-4">
+  <ul class="pagination">
+    <li
+      *counter="let page of pageCount"
+      (click)="changePage(page)"
+      class="page-item"
+      [class.active]="page == selectedPage"
+    >
+      <a class="page-link">{{ page }}</a>
+    </li>
+  </ul>
+</div>
+
+<table
+  mat-table
+  [dataSource]="getProducts()"
+  matSort
+  class="mat-elevation-z8"
+  style="width: 100%"
+>
+  <ng-container matColumnDef="productCode">
+    <th mat-header-cell *matHeaderCellDef mat-sort-header>Id</th>
+    <td mat-cell *matCellDef="let element; index as i">
+      {{ element.productCode }}
+    </td>
+  </ng-container>
+
+  <ng-container matColumnDef="productName">
+    <th mat-header-cell *matHeaderCellDef mat-sort-header>productName</th>
+    <td mat-cell *matCellDef="let element">
+      {{ element.productName }}
+    </td>
+  </ng-container>
+
+  <ng-container matColumnDef="category">
+    <th mat-header-cell *matHeaderCellDef mat-sort-header>category</th>
+    <td mat-cell *matCellDef="let element">
+      {{ element.category }}
+    </td>
+  </ng-container>
+
+  <ng-container matColumnDef="ProductDescription">
+    <th mat-header-cell *matHeaderCellDef mat-sort-header>
+      ProductDescription
+    </th>
+    <td mat-cell *matCellDef="let element">
+      {{ element.productDescription }}
+    </td>
+  </ng-container>
+
+  <ng-container matColumnDef="quantityInStock">
+    <th mat-header-cell *matHeaderCellDef mat-sort-header>quantityInStock</th>
+    <td mat-cell *matCellDef="let element">{{ element.quantityInStock }}</td>
+  </ng-container>
+
+  <ng-container matColumnDef="MSRP">
+    <th mat-header-cell *matHeaderCellDef mat-sort-header>MSRP</th>
+    <td mat-cell *matCellDef="let element">
+      {{ element.MSRP | currency: "GBP":"symbol":"2.2-2" }}
+    </td>
+  </ng-container>
+
+  <ng-container matColumnDef="actions">
+    <th mat-header-cell *matHeaderCellDef mat-sort-header>actions</th>
+    <td mat-cell *matCellDef="let element">
+       
+      <button
+        mat-raised-button
+        color="primary"
+        [routerLink]="['/admin/main/products/edit', element.productCode]"
+      >
+        Edit
+      </button>
+      <button
+        mat-raised-button
+        color="warn"
+        (click)="deleteProduct(element.productCode)"
+      >
+        Delete
+      </button>
+    </td>
+  </ng-container>
+
+  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+  <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+</table>
+
+{{ selectedCategory }}

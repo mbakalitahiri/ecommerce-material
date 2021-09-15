@@ -1,0 +1,9 @@
+<div class="container resumencarro" [routerLink]="['/store/cart']">
+  <div *ngIf="data | async as cart">
+    <div *ngIf="cart.itemCount > 0">
+      <span>{{ cart.cartPrice | currency: "GBP":"symbol":"2.2-2" }}</span>
+      <span class="material-icons"> shopping_cart </span>
+      <span>{{ cart.itemCount }}</span>
+    </div>
+  </div>
+</div>

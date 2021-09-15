@@ -1,0 +1,47 @@
+.mat-buy {
+  background-color: green;
+  color: #fff;
+}
+
+.mat-info {
+  background-color: #3f51b5;
+  color: #fff;
+}
+
+.mat-card-content {
+  text-align: center;
+  font-weight: bold;
+}
+.mat-card-actions {
+  text-align: center;
+}
+
+.mat-card-header {
+  text-align: center;
+}
+
+.center {
+  display: flex;
+  justify-content: center;
+}
+
+.content {
+  padding: 16px;
+}
+
+.content > mat-card {
+  width: 75px;
+}
+
+.mat-card-title {
+  text-align: center;
+}
+
+.mat-card-header-text {
+  text-align: center;
+}
+
+.mat-card-header {
+  display: flex;
+  /* flex-direction: row; */
+}
