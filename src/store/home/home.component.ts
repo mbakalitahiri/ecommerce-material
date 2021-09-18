@@ -1,5 +1,5 @@
-import { Component, OnInit } from "@angular/core";
-import { CartService } from "../../shared/services/cart.service";
+import { Component, OnInit } from '@angular/core';
+import { CartService } from '../../shared/services/cart.service';
 import { ProductRepository } from '../../model/product.repository';
 import { Cart } from '../../model/cart.model';
 import { Router } from '@angular/router';
@@ -18,7 +18,7 @@ export class HomeComponent implements OnInit {
   /****************************************************/
   /****************************************************/
   /****************************************************/
-  public selectedCategory:string =  "clothes";
+  public selectedCategory: string = 'clothes';
   public productsPerPage = 8;
   public selectedPage = 1;
 
@@ -37,9 +37,7 @@ export class HomeComponent implements OnInit {
     private cartService: CartService
   ) {}
 
-  ngOnInit(): void {
-
-  }
+  ngOnInit(): void {}
 
   /****************************************************/
   /****************************************************/
@@ -54,5 +52,9 @@ export class HomeComponent implements OnInit {
     return this.repository
       .getProducts(this.selectedCategory)
       .slice(pageIndex, this.productsPerPage);
+  }
+
+  addProductToCart(product: Product) {
+    this.cartService.updatedDataSelection(product);
   }
 }
