@@ -37,7 +37,9 @@ export class HomeComponent implements OnInit {
     private cartService: CartService
   ) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+
+  }
 
   /****************************************************/
   /****************************************************/
