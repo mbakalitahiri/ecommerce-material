@@ -11,30 +11,75 @@
   width: 200px;
 }
 
+html,
+body,
+header,
+.carousel {
+  height: 60vh;
+}
 
+@media (max-width: 740px) {
+  html,
+  body,
+  header,
+  .carousel {
+    height: 100vh;
+  }
+}
 
+@media (min-width: 800px) and (max-width: 850px) {
+  html,
+  body,
+  header,
+  .carousel {
+    height: 100vh;
+  }
+}
 
-      html,
-      body,
-      header,
-      .carousel {
-        height: 60vh;
-      }
+.mat-buy {
+  background-color: green;
+  color: #fff;
+}
 
-      @media (max-width: 740px) {
-        html,
-        body,
-        header,
-        .carousel {
-          height: 100vh;
-        }
-      }
+.mat-info {
+  background-color: #3f51b5;
+  color: #fff;
+}
 
-      @media (min-width: 800px) and (max-width: 850px) {
-        html,
-        body,
-        header,
-        .carousel {
-          height: 100vh;
-        }
-      }
+.mat-card-content {
+  text-align: center;
+  font-weight: bold;
+}
+.mat-card-actions {
+  text-align: center;
+}
+
+.mat-card-header {
+  text-align: center;
+}
+
+.center {
+  display: flex;
+  justify-content: center;
+}
+
+.content {
+  padding: 16px;
+}
+
+.content > mat-card {
+  width: 75px;
+}
+
+.mat-card-title {
+  text-align: center;
+}
+
+.mat-card-header-text {
+  text-align: center;
+}
+
+.mat-card-header {
+  display: flex;
+  /* flex-direction: row; */
+}
