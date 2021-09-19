@@ -6,11 +6,13 @@ import { RestDataSource } from "./rest.datasource";
 // import { StaticDataSource } from './static.datasource';
 // import { BsModalRef } from 'ngx-bootstrap/modal';
 // import { BsModalService } from 'ngx-bootstrap/modal';
+import { Observable, BehaviorSubject } from 'rxjs';
 @Injectable()
 export class ProductRepository {
   private products: Product[] = [];
   private categories: string[] = [];
-  constructor(private dataSource: RestDataSource) {
+
+   constructor(private dataSource: RestDataSource) {
     dataSource.getProducts().subscribe((data) => {
       this.products = data;
       this.categories = data
@@ -25,7 +27,7 @@ export class ProductRepository {
     );
   }
   getProduct(id: string): any {
-    return this.dataSource.getOProductById(id);
+     return  this.dataSource.getOProductById(id);
   }
   getCategories(): string[] {
     return this.categories;

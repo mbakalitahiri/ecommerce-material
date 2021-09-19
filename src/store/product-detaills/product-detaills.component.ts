@@ -1,6 +1,7 @@
 import { Component, OnInit, Output, EventEmitter } from "@angular/core"
 import { ActivatedRoute } from "@angular/router"
-import { Product } from "../../model/product.model"
+import { Observable, BehaviorSubject } from 'rxjs';
+import { Product } from '../../model/product.model';
 import { ProductRepository } from "../../model/product.repository"
 import { CartService } from "../../shared/services/cart.service"
 
@@ -10,27 +11,24 @@ import { CartService } from "../../shared/services/cart.service"
   styleUrls: ['./product-detaills.component.scss'],
 })
 export class ProductDetaillsComponent implements OnInit {
-  private id!: number;
-  public product!: Product;
+  private id!: string;
+  public product$ = new BehaviorSubject<any>(null);
   @Output() productAdded = new EventEmitter<Product>();
   constructor(
     private activatedRoute: ActivatedRoute,
     private productRepository: ProductRepository,
     private cartService: CartService
-  ) {
+  ) {}
+
+  ngOnInit(): void {
     this.activatedRoute.paramMap.subscribe((par: any) => {
-      this.productRepository
-        .getProduct(par.params.id)
-        .subscribe((data: any) => {
-          this.product = data[0];
-        });
+      this.id = par.params.id;
+      this.product$ = this.productRepository.getProduct(this.id)
     });
   }
 
-  ngOnInit(): void {}
-
   addProductToCart(product: Product) {
-     this.cartService.updatedDataSelection(product);
+    this.cartService.updatedDataSelection(product);
   }
 
   updateQuantity(linea: any, event: any) {
