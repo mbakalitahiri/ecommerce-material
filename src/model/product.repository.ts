@@ -6,11 +6,13 @@ import { RestDataSource } from "./rest.datasource";
 // import { StaticDataSource } from './static.datasource';
 // import { BsModalRef } from 'ngx-bootstrap/modal';
 // import { BsModalService } from 'ngx-bootstrap/modal';
-import { Observable, BehaviorSubject } from 'rxjs';
+import { Observable, BehaviorSubject, of } from 'rxjs';
+import { catchError, tap } from 'rxjs/operators';
 @Injectable()
 export class ProductRepository {
   private products: Product[] = [];
   private categories: string[] = [];
+  public producto!: Product;
 
    constructor(private dataSource: RestDataSource) {
     dataSource.getProducts().subscribe((data) => {
@@ -26,15 +28,19 @@ export class ProductRepository {
       (p) => category == null || category == p.category
     );
   }
-  getProduct(id: string): any {
-     return  this.dataSource.getOProductById(id);
+  getProduct(id: number): any {
+    this.dataSource.getOProductById(id).subscribe((x) => {
+      this.producto = x;
+      return x
+     })
+
+
   }
   getCategories(): string[] {
     return this.categories;
   }
   saveProduct(product: Product) {
-    console.log(product);
-    if (product.productCode == null || product.productCode == null) {
+     if (product.productCode == null || product.productCode == null) {
       this.dataSource
         .saveProduct(product)
         .subscribe((p) => this.products.push(p));

@@ -63,7 +63,13 @@
             <label for="lastName"
               >Last name<span class="text-muted">(Optional)</span></label
             >
-            <input type="text" class="form-control" name="lastName" />
+            <input
+              type="text"
+              class="form-control"
+              #lastName="ngModel"
+              name="lastName"
+              [(ngModel)]="order.lastName"
+            />
             <div class="invalid-feedback"></div>
           </div>
         </div>

@@ -11,7 +11,7 @@ import { CartService } from "../../shared/services/cart.service"
   styleUrls: ['./product-detaills.component.scss'],
 })
 export class ProductDetaillsComponent implements OnInit {
-  private id!: string;
+  private id!: number;
   public product$ = new BehaviorSubject<any>(null);
   @Output() productAdded = new EventEmitter<Product>();
   constructor(
@@ -23,7 +23,7 @@ export class ProductDetaillsComponent implements OnInit {
   ngOnInit(): void {
     this.activatedRoute.paramMap.subscribe((par: any) => {
       this.id = par.params.id;
-      this.product$ = this.productRepository.getProduct(this.id)
+       this.product$ = this.productRepository.getProduct(this.id)
     });
   }
 

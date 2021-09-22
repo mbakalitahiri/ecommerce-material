@@ -1,10 +1,10 @@
 import { HttpClient, HttpHeaders } from "@angular/common/http";
 import { Injectable } from "@angular/core";
-import { Observable } from "rxjs";
-import { map } from "rxjs/operators";
+import { Observable, of } from "rxjs";
+import { catchError, map, tap } from "rxjs/operators";
 
 import { Order } from "./order.model";
-import { Product } from "./product.model";
+import { Product } from './product.model';
 
 const PROTOCOL = "http";
 const PORT = 3000;
@@ -24,11 +24,10 @@ export class RestDataSource {
     return this.http.get<Product[]>(this.baseUrl + "products");
   }
 
-  getOProductById(id: string): Observable<any> {
-     return this.http.get<any>(
-      this.baseUrl + `product/${id}`,
-      this.getOptions()
-    );
+  getOProductById(id: number): Observable<any> {
+     return this.http
+       .get<Product>(this.baseUrl + `product/${id}`, this.getOptions())
+
   }
   saveProduct(product: Product): Observable<Product> {
     return this.http.post<Product>(
@@ -37,12 +36,11 @@ export class RestDataSource {
       this.getOptions()
     );
   }
-  updateProduct(product:any): Observable<Product> {
-    return this.http.put<Product>(
-      `${this.baseUrl}product/${product.id}`,
-      product,
+  updateProduct(product: any): Observable<Product> {
+    console.log("producto acualizado", product)
+     return this.http.put<Product>(`http://localhost:3000/api/v1/product/${product.productCode}`,  product,
       this.getOptions()
-    );
+    )
   }
   deleteProduct(id: number): Observable<Product> {
     return this.http.delete<Product>(

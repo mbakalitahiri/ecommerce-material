@@ -3,6 +3,7 @@
   [class.bg-warning]="editing"
   [class.text-dark]="editing"
 >
+  ;
   <h5>{{ editing ? "Edit" : "Create" }} Product</h5>
 </div>
 <form novalidate #form="ngForm" (ngSubmit)="save(form)">
@@ -50,5 +51,3 @@
     Cancel
   </button>
 </form>
-
-{{ editing }}
